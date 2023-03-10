@@ -17,6 +17,8 @@ function onButtonStart() {
    
      
     isActive = true;
+    buttonStart.disabled = true;
+    buttonStop.disabled = false;
     // tagBody.style.backgroundColor = setInterval(getRandomHexColor, 1000); 
     timerId = setInterval(() => {
         tagBody.style.backgroundColor = getRandomHexColor();
@@ -32,6 +34,8 @@ function onButtonStop (){
      }
 
      isActive = false;
+     buttonStart.disabled = false;
+     buttonStop.disabled = true;
      clearTimeout(timerId);
 }
 

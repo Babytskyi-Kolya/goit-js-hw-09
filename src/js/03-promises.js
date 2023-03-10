@@ -12,13 +12,18 @@ function createPromise(position, delay) {
 
   return new Promise ((resolve, reject) => {
     setTimeout(() => {
+      if(position <= miForm.elements.amount.value){
+        document.querySelector('button').disabled = true;
+      } 
       if (shouldResolve) {
         resolve ({position, delay})
       } else {
         reject ({position, delay})
       }
     }, delay)
+    // document.querySelector('button').disabled = false;
     });
+    
   }
 
 
@@ -35,16 +40,20 @@ function onClickSubmit(e){
 
      createPromise(position, delay)
     .then(({position, delay}) => {
+      
       Notiflix.Notify.success(
         `✅ Fulfilled promise ${position} in ${delay}ms`
       );
     })
     .catch(({position, delay}) => {
+      // document.querySelector('button').disabled = true;
       Notiflix.Notify.failure(
         `❌ Rejected promise ${position} in ${delay}ms`
       );
     });
+    
   }
+  
 }
 
 
